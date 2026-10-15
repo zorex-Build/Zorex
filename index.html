@@ -1,392 +1,478 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>ZER0X | Wear Your Difference</title>
 
-    <title>ZER0X — Wear Your Difference</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    html { scroll-behavior: smooth; }
 
-        body {
-            background: #080808;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-        /* NAVIGATION */
+    a { color: inherit; text-decoration: none; }
 
-        nav {
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            background: rgba(8, 8, 8, 0.95);
-            z-index: 100;
-        }
+    nav {
+      height: 76px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #262626;
+      position: sticky;
+      top: 0;
+      background: #080808;
+      z-index: 10;
+    }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 4px;
-        }
+    .logo {
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+    }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
+    .nav-links a:hover { color: #aaa; }
 
-        .nav-links a:hover {
-            opacity: 0.6;
-        }
+    .cart-button {
+      border: 1px solid #555;
+      padding: 11px 15px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
 
-        .cart {
-            font-size: 14px;
-            cursor: pointer;
-        }
+    .hero {
+      min-height: 490px;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(ellipse at center, #292929, #080808 70%);
+    }
 
-        /* HERO */
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
 
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+    .hero h1 {
+      font-size: clamp(65px, 13vw, 145px);
+      font-weight: 900;
+      letter-spacing: 12px;
+    }
 
-            background:
-                radial-gradient(circle at center, #202020 0%, #080808 60%);
-        }
+    .hero p {
+      margin-top: 15px;
+      color: #bbb;
+      letter-spacing: 4px;
+      font-size: 13px;
+    }
 
-        .hero h1 {
-            font-size: clamp(60px, 12vw, 160px);
-            letter-spacing: 15px;
-            font-weight: 900;
-        }
+    .shop-button {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 16px 35px;
+      background: #fff;
+      color: #000;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
 
-        .hero p {
-            margin-top: 20px;
-            font-size: 16px;
-            letter-spacing: 5px;
-            color: #aaa;
-        }
+    .shop-button:hover { background: #ddd; }
 
-        .shop-button {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 16px 45px;
-            background: white;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+    .section { padding: 75px 6%; }
 
-        .shop-button:hover {
-            background: #cccccc;
-        }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 32px;
+      gap: 15px;
+    }
 
-        /* SECTION */
+    .section-heading h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      letter-spacing: 2px;
+    }
 
-        .section {
-            padding: 100px 6%;
-        }
+    .section-heading p {
+      color: #888;
+      font-size: 12px;
+    }
 
-        .section-title {
-            font-size: 36px;
-            letter-spacing: 3px;
-            margin-bottom: 50px;
-        }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
 
-        /* PRODUCTS */
+    .product { min-width: 0; }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+    .image-wrap {
+      overflow: hidden;
+      background: #191919;
+      aspect-ratio: 3 / 4;
+    }
 
-        .product {
-            background: #111;
-            padding-bottom: 25px;
-            transition: transform 0.3s;
-        }
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s;
+    }
 
-        .product:hover {
-            transform: translateY(-5px);
-        }
+    .product:hover .image-wrap img { transform: scale(1.04); }
 
-        .product-image {
-            height: 420px;
-            background: #1b1b1b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 14px;
-            letter-spacing: 2px;
-        }
+    .product-info { padding: 17px 0; }
 
-        .product-info {
-            padding: 20px;
-        }
+    .product-name {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: bold;
+      min-height: 42px;
+    }
 
-        .product-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .price {
+      margin: 9px 0 15px;
+      color: #ccc;
+      font-size: 15px;
+    }
 
-        .price {
-            color: #aaa;
-            margin-bottom: 20px;
-        }
+    .add-button {
+      width: 100%;
+      padding: 13px 8px;
+      background: transparent;
+      border: 1px solid #666;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
 
-        .product-button {
-            width: 100%;
-            padding: 13px;
-            background: white;
-            color: black;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
+    .add-button:hover {
+      background: #fff;
+      color: #000;
+    }
 
-        /* ABOUT */
+    .about {
+      text-align: center;
+      background: #111;
+      padding: 75px 20px;
+    }
 
-        .about {
-            background: #111;
-            text-align: center;
-        }
+    .about h2 {
+      font-size: 30px;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
 
-        .about p {
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.8;
-            color: #aaa;
-            font-size: 17px;
-        }
+    .about p {
+      max-width: 600px;
+      margin: auto;
+      color: #aaa;
+      line-height: 1.9;
+      font-size: 15px;
+    }
 
-        /* FOOTER */
+    .cart-panel {
+      display: none;
+      padding: 25px 6%;
+      background: #171717;
+      border-bottom: 1px solid #444;
+    }
 
-        footer {
-            padding: 50px 6%;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            color: #777;
-            font-size: 13px;
-        }
+    .cart-panel.open { display: block; }
 
-        /* MOBILE */
+    .cart-panel h2 { margin-bottom: 15px; }
 
-        @media (max-width: 768px) {
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
+    }
 
-            nav {
-                padding: 0 20px;
-            }
+    .remove-button {
+      background: transparent;
+      color: #bbb;
+      border: 1px solid #555;
+      padding: 6px 9px;
+      cursor: pointer;
+    }
 
-            .nav-links {
-                display: none;
-            }
+    .cart-total {
+      margin-top: 18px;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-            .hero h1 {
-                font-size: 60px;
-                letter-spacing: 8px;
-            }
+    .empty-cart { color: #aaa; padding: 12px 0; }
 
-            .products {
-                grid-template-columns: 1fr;
-            }
+    footer {
+      padding: 30px 6%;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: #888;
+      font-size: 12px;
+      border-top: 1px solid #222;
+    }
 
-            .product-image {
-                height: 400px;
-            }
+    #notice {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: black;
+      padding: 13px 20px;
+      font-size: 13px;
+      display: none;
+      z-index: 20;
+      max-width: 90%;
+      text-align: center;
+    }
 
-            footer {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-    </style>
+    @media (max-width: 850px) {
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links { gap: 14px; }
+    }
+
+    @media (max-width: 520px) {
+      nav { padding: 0 4%; height: 65px; }
+      .logo { font-size: 23px; letter-spacing: 3px; }
+      .nav-links { display: none; }
+      .hero { min-height: 400px; }
+      .hero h1 { letter-spacing: 6px; }
+      .section { padding: 48px 4%; }
+      .products { gap: 12px; }
+      .product-name { font-size: 12px; }
+      .price { font-size: 14px; }
+      .section-heading p { display: none; }
+      footer { flex-direction: column; }
+    }
+  </style>
 </head>
 
 <body>
+  <nav>
+    <a href="#" class="logo">ZER0X</a>
 
-    <!-- NAVIGATION -->
+    <ul class="nav-links">
+      <li><a href="#shop">SHOP</a></li>
+      <li><a href="#shop">NEW ARRIVALS</a></li>
+      <li><a href="#about">ABOUT</a></li>
+    </ul>
 
-    <nav>
+    <button class="cart-button" id="cartToggle" aria-expanded="false">
+      CART (<span id="cartCount">0</span>)
+    </button>
+  </nav>
 
-        <div class="logo">
-            ZER0X
+  <section class="hero">
+    <div class="eyebrow">INDEPENDENT STREETWEAR</div>
+    <h1>ZER0X</h1>
+    <p>WEAR YOUR DIFFERENCE.</p>
+    <a class="shop-button" href="#shop">EXPLORE COLLECTION</a>
+  </section>
+
+  <section class="cart-panel" id="cartPanel" aria-live="polite">
+    <h2>YOUR CART</h2>
+    <div id="cartItems"></div>
+    <div class="cart-total">Subtotal: <span id="cartTotal">₹0</span></div>
+    <p style="color:#999;font-size:12px;margin-top:10px">
+      Shipping and payment will be added in a later step.
+    </p>
+  </section>
+
+  <section class="section" id="shop">
+    <div class="section-heading">
+      <h2>THE COLLECTION</h2>
+      <p>FOUR PIECES. ONE DIFFERENT ATTITUDE.</p>
+    </div>
+
+    <div class="products">
+      <article class="product">
+        <div class="image-wrap">
+          <img src="./tshirt.jpg" alt="White oversized Zorex T-shirt"
+               loading="lazy">
         </div>
-
-        <ul class="nav-links">
-            <li><a href="#shop">SHOP</a></li>
-            <li><a href="#new">NEW ARRIVALS</a></li>
-            <li><a href="#about">ABOUT</a></li>
-        </ul>
-
-        <div class="cart">
-            🛒 CART (0)
+        <div class="product-info">
+          <h3 class="product-name">Oversized Zorex Printed T-Shirt</h3>
+          <p class="price">₹799</p>
+          <button class="add-button" data-product="0">ADD TO CART</button>
         </div>
+      </article>
 
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <h1>ZER0X</h1>
-
-        <p>WEAR YOUR DIFFERENCE</p>
-
-        <a href="#shop" class="shop-button">
-            SHOP NOW
-        </a>
-
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section class="section" id="shop">
-
-        <h2 class="section-title">
-            FEATURED PRODUCTS
-        </h2>
-
-        <div class="products">
-
-            <div class="product">
-
-                <div class="product-image">
-                    PRODUCT IMAGE
-                </div>
-
-                <div class="product-info">
-
-                    <div class="product-name">
-                        ZER0X OVERSIZED TEE
-                    </div>
-
-                    <div class="price">
-                        ₹1,499
-                    </div>
-
-                    <button class="product-button">
-                        ADD TO CART
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    PRODUCT IMAGE
-                </div>
-
-                <div class="product-info">
-
-                    <div class="product-name">
-                        ZER0X HOODIE
-                    </div>
-
-                    <div class="price">
-                        ₹2,499
-                    </div>
-
-                    <button class="product-button">
-                        ADD TO CART
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="product">
-
-                <div class="product-image">
-                    PRODUCT IMAGE
-                </div>
-
-                <div class="product-info">
-
-                    <div class="product-name">
-                        ZER0X CARGO
-                    </div>
-
-                    <div class="price">
-                        ₹2,199
-                    </div>
-
-                    <button class="product-button">
-                        ADD TO CART
-                    </button>
-
-                </div>
-
-            </div>
-
+      <article class="product">
+        <div class="image-wrap">
+          <img src="./trouser.jpg" alt="Grey striped relaxed trousers"
+               loading="lazy">
         </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section class="section about" id="about">
-
-        <h2 class="section-title">
-            THE ZER0X STORY
-        </h2>
-
-        <p>
-            ZER0X is built for people who don't follow the ordinary.
-            Modern silhouettes, bold identity and a different approach
-            to streetwear.
-        </p>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <div>
-            © 2026 ZER0X
+        <div class="product-info">
+          <h3 class="product-name">Zorex Striped Relaxed Trouser</h3>
+          <p class="price">₹1,299</p>
+          <button class="add-button" data-product="1">ADD TO CART</button>
         </div>
+      </article>
 
-        <div>
-            WEAR YOUR DIFFERENCE.
+      <article class="product">
+        <div class="image-wrap">
+          <img src="./trackpant.jpg" alt="Black baggy printed track pants"
+               loading="lazy">
         </div>
+        <div class="product-info">
+          <h3 class="product-name">Baggy Printed Track Pant</h3>
+          <p class="price">₹1,199</p>
+          <button class="add-button" data-product="2">ADD TO CART</button>
+        </div>
+      </article>
 
-    </footer>
+      <article class="product">
+        <div class="image-wrap">
+          <img src="./bootcut.jpg" alt="Light fade blue boot cut jeans"
+               loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Light Fade Boot Cut Jeans</h3>
+          <p class="price">₹2,409</p>
+          <button class="add-button" data-product="3">ADD TO CART</button>
+        </div>
+      </article>
+    </div>
+  </section>
 
+  <section class="about" id="about">
+    <h2>THE ZER0X STORY</h2>
+    <p>
+      Built for those who choose their own path.
+      Modern silhouettes, expressive details and everyday streetwear.
+      This is ZER0X. Wear your difference.
+    </p>
+  </section>
+
+  <footer>
+    <span>© 2026 ZER0X</span>
+    <span>WEAR YOUR DIFFERENCE.</span>
+  </footer>
+
+  <div id="notice" role="status"></div>
+
+  <script>
+    const products = [
+      { name: "Oversized Zorex Printed T-Shirt", price: 799 },
+      { name: "Zorex Striped Relaxed Trouser", price: 1299 },
+      { name: "Baggy Printed Track Pant", price: 1199 },
+      { name: "Light Fade Boot Cut Jeans", price: 2409 }
+    ];
+
+    const cart = [];
+    const count = document.getElementById("cartCount");
+    const panel = document.getElementById("cartPanel");
+    const cartItems = document.getElementById("cartItems");
+    const total = document.getElementById("cartTotal");
+    const notice = document.getElementById("notice");
+
+    const money = value => "₹" + value.toLocaleString("en-IN");
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.style.display = "block";
+      window.clearTimeout(showNotice.timer);
+      showNotice.timer = window.setTimeout(() => {
+        notice.style.display = "none";
+      }, 2200);
+    }
+
+    function renderCart() {
+      count.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartItems.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+      }
+
+      let subtotal = 0;
+
+      cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+
+        const row = document.createElement("div");
+        row.className = "cart-row";
+
+        const details = document.createElement("span");
+        details.textContent =
+          item.name + " × " + item.qty + " — " +
+          money(item.price * item.qty);
+
+        const remove = document.createElement("button");
+        remove.className = "remove-button";
+        remove.textContent = "REMOVE";
+        remove.addEventListener("click", () => {
+          cart.splice(index, 1);
+          renderCart();
+        });
+
+        row.append(details, remove);
+        cartItems.appendChild(row);
+      });
+
+      total.textContent = money(subtotal);
+    }
+
+    document.querySelectorAll(".add-button").forEach(button => {
+      button.addEventListener("click", () => {
+        const product = products[Number(button.dataset.product)];
+        const existing = cart.find(item => item.name === product.name);
+
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+
+        renderCart();
+        showNotice(product.name + " added to cart.");
+      });
+    });
+
+    document.getElementById("cartToggle").addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("open");
+      document.getElementById("cartToggle")
+        .setAttribute("aria-expanded", String(isOpen));
+
+      if (isOpen) {
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    });
+
+    renderCart();
+  </script>
 </body>
 </html>
